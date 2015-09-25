@@ -1,0 +1,25 @@
+{
+  "name": "restful-devtools",
+  "version": "0.0.1",
+  "homepage": "https://github.com/marmelab/restful-devtools",
+  "authors": [
+    "Robin Bressan <robin@buddey.net>"
+  ],
+  "description": "Debug for restful.js",
+  "main": "dist/restful-devtools.min.js",
+  "keywords": [
+    "rest",
+    "restful",
+    "api",
+    "debug"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "test",
+    "src",
+    "package.json"
+  ]
+}
