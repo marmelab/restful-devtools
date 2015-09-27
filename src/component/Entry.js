@@ -1,15 +1,17 @@
+import JSONTree from 'react-json-tree';
 import React, { Component, PropTypes } from 'react';
 
 export default class Section extends Component {
     static propTypes = {
+        data: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         title: PropTypes.string.isRequired,
         titleColor: PropTypes.string,
-        children: PropTypes.node,
         url: PropTypes.string,
     };
 
     render() {
-        const { children, title, titleColor = 'white', url } = this.props;
+        const { data, theme, title, titleColor = 'white', url } = this.props;
 
         return (
             <section>
@@ -24,7 +26,7 @@ export default class Section extends Component {
                     <br/>
                     <small>{url}</small>
                 </h4>
-                { children }
+                <JSONTree {...{data, theme}} />
             </section>
         );
     }

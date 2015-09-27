@@ -1,7 +1,4 @@
-import notifier from './service/notifier';
-// import debug from './service/debug';
-
-import Root from './container/Root';
+import DevTools from './container/DevTools';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -10,7 +7,9 @@ export default function(restful) {
     window.document.body.appendChild(container);
 
     ReactDOM.render(
-        <Root { ...{ notifier: notifier(restful) } } />,
+        <DevTools { ...{ restful } } />,
         container
     );
 }
+
+// export { DevTools };
