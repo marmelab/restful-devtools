@@ -1,0 +1,24 @@
+{
+    "name": "restful-devtools",
+    "version": "0.1",
+    "description": "Debugging tools for restful.js",
+    "devtools_page": "devtools.html",
+    "background": {
+        "scripts": ["javascripts/bridge.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["javascripts/connector.js", "javascripts/inject.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": ["javascripts/backend.js"],
+    "permissions": [
+        "tabs",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "manifest_version": 2
+}
