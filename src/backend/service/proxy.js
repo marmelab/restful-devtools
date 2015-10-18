@@ -1,4 +1,4 @@
-export default function proxy(port) {
+export default function proxy(window, port) {
     function onBackendMessage(event) {
         const { data } = event;
 

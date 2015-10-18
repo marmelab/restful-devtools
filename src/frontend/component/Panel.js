@@ -1,4 +1,4 @@
-import { List } from 'immutable';
+// import { List } from 'immutable';
 import React, { Component, PropTypes } from 'react';
 
 console.log = function(txt) {
@@ -14,7 +14,8 @@ export default class Panel extends Component {
         super(props);
 
         this.state = {
-            events: List(),
+            // events: List([{ type: 'test'}]),
+            events: [],
         };
     }
 
@@ -23,9 +24,9 @@ export default class Panel extends Component {
 
         network.on('message', (message) => {
             console.log('message');
-            this.state.events.push(message);
             this.setState(({ events }) => ({
-                events: events.push(message),
+                // events: events.push(message),
+                events: events.concat([message]),
             }));
         });
     }
@@ -36,7 +37,7 @@ export default class Panel extends Component {
         return (
             <ul>
                 {events.map((event) => {
-                    return <li>entry: {JSON.stringify(event.toJS())}</li>;
+                    return <li>entry: {JSON.stringify(event)}</li>;
                 })}
             </ul>
         );

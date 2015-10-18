@@ -33,11 +33,17 @@ export default function(restful) {
         });
 
         instance.on('response', (response) => {
-
+            emitter.emit('message', {
+                type: 'response',
+                response
+            });
         });
 
         instance.on('error', (error) => {
-
+            emitter.emit('message', {
+                type: 'error',
+                error
+            });
         });
     }
 

@@ -1,11 +1,9 @@
 import networkService from './service/network';
-import inspector from './service/inspector';
-import subscriber from './service/subscriber';
+import inspectorService from './service/inspector';
+import subscriberService from './service/subscriber';
 
-const network = networkService(window);
-
-function boot() {
-    inspector(window)
+export default function backend(inspector, network, subscriber) {
+    inspector
         .on('ready', (restful) => {
             network.emit('send', {
                 restful: true,
@@ -21,8 +19,13 @@ function boot() {
         });
 }
 
+const network = networkService(window);
 network.on('message', (incomingMessage) => {
     if (incomingMessage.hello) {
-        boot();
+        backend(
+            inspectorService(window),
+            network,
+            subscriberService
+        );
     }
 });

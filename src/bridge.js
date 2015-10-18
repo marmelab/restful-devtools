@@ -1,4 +1,4 @@
-const pipes = {};
+const ports = {};
 
 function link(left, right) {
     function leftToRight(message) {
@@ -20,31 +20,31 @@ function link(left, right) {
     right.onDisconnect.addListener(onDisconnect);
 }
 
-chrome.runtime.onConnect.addListener((pipe) => {
-    let { name } = pipe;
+chrome.runtime.onConnect.addListener((port) => {
+    let { name } = port;
     let tabId;
 
     if ('' + parseInt(name, 10) === name) {
         tabId = name;
         name = 'restful-devtools-frontend';
     } else {
-        tabId = '' + pipe.sender.tab.id;
+        tabId = '' + port.sender.tab.id;
     }
 
 
-    if (!pipes[tabId]) {
-        pipes[tabId] = {
+    if (!ports[tabId]) {
+        ports[tabId] = {
             'restful-devtools-backend': null,
             'restful-devtools-frontend': null,
         };
     }
 
-    pipes[tabId][name] = pipe;
+    ports[tabId][name] = port;
 
-    if (pipes[tabId]['restful-devtools-backend'] && pipes[tabId]['restful-devtools-frontend']) {
+    if (ports[tabId]['restful-devtools-backend'] && ports[tabId]['restful-devtools-frontend']) {
         link(
-            pipes[tabId]['restful-devtools-backend'],
-            pipes[tabId]['restful-devtools-frontend']
+            ports[tabId]['restful-devtools-backend'],
+            ports[tabId]['restful-devtools-frontend']
         );
     }
 });

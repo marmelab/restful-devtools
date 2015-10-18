@@ -1,5 +1,5 @@
 import proxy from './service/proxy';
 
-proxy(chrome.runtime.connect({
+proxy(window, chrome.runtime.connect({
     name: 'restful-devtools-backend',
 }));
