@@ -4,7 +4,11 @@ var production = process.env.NODE_ENV === 'production';
 
 module.exports = {
     entry: {
-        devtools: './src/index.js',
+        backend: './src/backend/index.js',
+        connector: './src/backend/connector.js',
+        bridge: './src/bridge.js',
+        frontend: './src/frontend/index.js',
+        inject: './src/inject.js',
     },
     module: {
         loaders: [{
@@ -25,9 +29,7 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
     ] : []),
     output: {
-        path: './dist',
-        filename: production ? 'restful-devtools.min.js' : 'restful-devtools.js',
-        library: 'restfulDevtools',
-        libraryTarget: 'umd',
+        path: './extension/javascripts',
+        filename: production ? '[name].min.js' : '[name].js',
     },
 };
